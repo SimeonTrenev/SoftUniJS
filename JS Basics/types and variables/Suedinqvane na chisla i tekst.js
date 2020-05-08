@@ -1,0 +1,8 @@
+function tekstAndNumber(){
+
+
+    
+}
+tekstAndNumber([
+
+]);
