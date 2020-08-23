@@ -1,26 +1,24 @@
 function storage(array){
 
     let mapped = new Map();
-    
 
-    for(let item of array){
-        let news = item.split(' ');
-        let product = news[0]
-        let quantity = Number(news[1])
-
-        if(!mapped.has(product)){
-            mapped.set(product,+quantity)
-        }else{
-            let currentQuantity = mapped.get(product)
-            let newQuantity = currentQuantity += quantity;
+    for(let line of array){
+        let [product, quantity] = line.split(' ')
+        quantity = Number(quantity)
+        if(mapped.has(product)){
+            let oldQuantity = mapped.get(product)
+            let newQuantity = oldQuantity + quantity
             mapped.set(product,newQuantity)
+        }else{
+            mapped.set(product,quantity)
         }
     }
-  
-    mapped.forEach((product,quantity)=>{
-        console.log(`${quantity} -> ${product}`)
+    // mapped.forEach((product,quantity) => console.log(`${quantity} -> ${product}`))
+    let iterated = Array.from(mapped.entries()).forEach(key => {
+        console.log(`${key[0]} -> ${key[1]}`)
     })
-    
+   
+       
 
 }
 storage(['tomatoes 10',

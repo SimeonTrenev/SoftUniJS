@@ -1,8 +1,9 @@
-function rounding(n, trailingZeroes){
+function rounding(number, trailingZeroes){
+
     if(trailingZeroes > 15){
         trailingZeroes = 15
     }
-    let x = parseFloat(n.toFixed(trailingZeroes))
-    console.log(x)
+    let result = parseFloat(number.toFixed(trailingZeroes))
+    console.log(result)
 }
-rounding(3.1443535353535353535353, 2)
+rounding(3.1415926535897932384626433832795,2)

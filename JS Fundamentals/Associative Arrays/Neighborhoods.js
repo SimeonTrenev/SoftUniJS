@@ -1,35 +1,37 @@
-function neighborhoods(input){
+function neigborhoods(array){
 
+    let neigbourbours = array.shift().split(', ')
+    let mappedNeigbourhoods = {};
+    
+   
 
-let neighborhoodName1 = input.shift().split(', ');
-let neigbourhouds = new Map();
+    for(let name of neigbourbours){
+        mappedNeigbourhoods[name] = []
+    }
 
-neighborhoodName1.forEach(name => neigbourhouds.set(name, []))
+    for(let line of array){
+    let [neigbours,person] = line.split(' - ')
+        if(mappedNeigbourhoods[neigbours]){
+            mappedNeigbourhoods[neigbours].push(person)
+        }
 
-for(let line of input){
-    let [neighborhoodNames, person] = line.split(' - ')
-    if(neigbourhouds.has(neighborhoodNames)){
-        neigbourhouds.get(neighborhoodNames).push(person)
+    }
+    
+    let iterated = Object.entries(mappedNeigbourhoods).sort((a,b) => {
+        let lengthOfObjectA = a[1].length;
+        let lengthOfObjectB = b[1].length;
+
+        return lengthOfObjectB - lengthOfObjectA;
+    })
+    
+    for(let kvp of iterated){
+        console.log(`${kvp[0]}: ${kvp[1].length}`)
+        for(let person of kvp[1]){
+            console.log(`--${person}`)
+        }
     }
 }
-
-let temp = Array.from(neigbourhouds.entries());
-temp.sort((a,b)=>{
-  let aCount = a[1].length;
-  let bCount = b[1].length
-  return bCount - aCount;
-})
-let result = new Map(temp)
-
-for(let [neigborhoodName, person] of result){
-    console.log(`${neigborhoodName}: ${person.length}`)
-
-    person.forEach(people => console.log(`--${people}`))
-}
-
-
-}
-neighborhoods(['Abbey Street, Herald Street, Bright Mews',
+neigborhoods(['Abbey Street, Herald Street, Bright Mews',
 'Bright Mews - Garry',
 'Bright Mews - Andrea',
 'Invalid Street - Tommy',

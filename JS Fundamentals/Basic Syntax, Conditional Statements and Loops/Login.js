@@ -1,25 +1,23 @@
-function login(password){
-    let username = password.shift()
-    let newStringe = username.split('').reverse()
-    let joinArray = newStringe.join('')
-    let comand = password.shift()
-    let flagged = false;
-    let counter = 0;
-    while(comand !== joinArray){
-        counter++;
+function login(input){
+
+    let user = input.shift()
+    let password = user.split('').reverse().join('')
+    let comand = input.shift()
+    let counter = 1
+    while(password !== comand){
         if(counter === 4){
-            console.log(`User ${username} blocked!`)
+            console.log(`User ${user} blocked!`)
             break;
         }
         console.log('Incorrect password. Try again.')
-        comand = password.shift()
-        if(comand === joinArray){
-            flagged = true;
-            break;
-        }
+        comand = input.shift()
+        counter++;
     }
-    if(flagged || comand === joinArray){
-        console.log(`User ${username} logged in.`)
+    if(password === comand){
+        console.log(`User ${user} logged in.`)
     }
+    
+    
+
 }
-login(['momo', 'omom'])
+login(['sunny','rainy','cloudy','sunny','not sunny'])

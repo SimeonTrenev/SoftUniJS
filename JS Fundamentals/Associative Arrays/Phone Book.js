@@ -1,18 +1,42 @@
 function phoneBook(array){
 
-    let mapped = new Map();
 
-    for(let el of array){
-        let[name,number] = el.split(' ')
-        mapped.set(name,number)
-        
+let contacts = {}
+
+for(let line of array){
+    let [name,phone] = line.split(' ')
+    contacts[name] = phone
+}
+   
+    for(let key in contacts){
+        console.log(`${key} -> ${contacts[key]}`)
     }
-    mapped.forEach((name,number)=>{
-        console.log(`${number} -> ${name}`)
-    })
-    // for(let [name,phone] of mapped){
-    //     console.log(`${name} -> ${phone}`)
-    // }
+    
+
+//     let contacts = new Map()
+
+// for(let line of array){
+//     let [name,phone] = line.split(' ')
+//     contacts.set(name,phone)
+// }
+//     contacts.forEach((names,phones) => console.log(`${phones} -> ${names}`))
+  
+
+// let object = {};
+
+// for(let line of array){
+//     let splitted = line.split(' ')
+//     let name = splitted[0]
+//     let phone = splitted[1]
+
+//     object[name] = phone;
+// }
+
+// Object.keys(object).forEach(key => console.log(`${key} -> ${object[key]}`))
+
+// // for(let key in object){
+// //     console.log(`${key} -> ${object[key]}`)
+// // }
 
 }
 phoneBook(['Tim 0834212554',

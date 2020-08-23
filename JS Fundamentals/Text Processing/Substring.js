@@ -1,7 +1,8 @@
-function solve(word, startIndex, count){
+function substring(string, startNumber, length){
 
+    console.log(string.substring(startNumber,startNumber + length))
+    // console.log(string.substr(startNumber,length))
 
-    console.log(word.substr(startIndex,count))
 
 }
-solve("ASentance", 1, 8)
+substring("ASentance", 1, 8)

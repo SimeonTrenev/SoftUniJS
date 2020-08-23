@@ -1,0 +1,7 @@
+const express = require('express')
+const data = require('./module')
+const fs = require('fs')
+console.log(data.name)
+console.log(data.add(4,3))
+let content = fs.readFileSync('./text.js', {encoding : 'utf-8'})
+console.log(content)

@@ -1,14 +1,9 @@
-function gramaphone(band, album, songName){
+function gramophone(band, album, songName){
 
-    let plateRound = 2.5;
-    let time = band.length * album.length * songName.length/2
-    
-    let roundTime = 1;
-    while(time > plateRound){
-        roundTime++;
-        plateRound+=2.5
-    }
-    roundTime = parseInt(roundTime);
-    console.log(`The plate was rotated ${roundTime} times.`)
+    let timeForSong = Number((album.length * band.length) * songName.length / 2)
+    let fullRotation = 2.5;
+    let numberOfRotations = Math.ceil(timeForSong / fullRotation)
+    console.log(`The plate was rotated ${numberOfRotations} times.`)
+
 }
-gramaphone('Black Sabbath', 'Paranoid', 'War Pigs')
+gramophone('Black Sabbath', 'Paranoid', 'War Pigs')

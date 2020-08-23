@@ -1,18 +1,34 @@
-function employees(arr){
+function employees(array){
 
-
-    let myArr = [];
+    let object = {};
     
-    for(let personalName of arr){
-        let object = {
-            name : personalName,
-            personalNumber : personalName.length
-        }   
-        myArr.push(object)
+
+  array.forEach(name => {
+      object[name] = name.length
+  });
+    
+    for(let key in object){
+        console.log(`Name: ${key} -- Personal Number: ${object[key]}`)
     }
-    for(let key of myArr){
-        console.log(`Name: ${key.name} -- Personal Number: ${key.personalNumber}`)
-    }
+
+
+    // function solve(input){
+
+    //     let array = [];
+     
+    //     input.forEach(name => {
+    //         let object = {
+    //             name : name,
+    //             personalNumber : name.length
+    //         }
+    //         array.push(object)
+    //     });
+     
+    //     for(let elements of array){
+    //         console.log(`Name: ${elements.name} -- Personal Number: ${elements.personalNumber}`)
+    //     }
+     
+    //  }
 
 }
 employees([
@@ -22,3 +38,4 @@ employees([
     'Brendan Villarreal'
     ]
     )
+

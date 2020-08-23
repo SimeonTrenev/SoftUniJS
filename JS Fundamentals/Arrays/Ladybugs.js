@@ -1,70 +1,47 @@
-function ladyBugs(arr){
+function ladyBugs(array){
 
-    let sizeOfField = arr[0]
+   let field = [];
+   let fieldSize = array[0];
+   for(let i = 0; i < fieldSize;i++){
+       if(array[1].split(' ').includes(i.toString())){
+           field[i] = 1;
+       }else{
+           field[i] = 0;
+       }
+       
+   }
+   for(let index = 2;index < array.length;index++){
+       let action = array[index].split(' ');
+       let ladyBugIndex = Number(action[0]);
+       let direction = action[1];
+       let flyLength = Number(action[2]);
+       let hasLanded = false;
+       if(field[ladyBugIndex] === 1){
+           field[ladyBugIndex] = 0;
+           while(!hasLanded){
+               if(direction === 'right'){
+                   ladyBugIndex += flyLength;
+               }else if(direction === 'left'){
+                   ladyBugIndex -= flyLength;
+               }
+               if(field[ladyBugIndex] === 1){
+                   continue;
+               }else if(field[ladyBugIndex] === 0){
+                   field[ladyBugIndex] = 1;
+                   hasLanded = true;
+               }else{
+                   hasLanded = true;
+               }
+           }
+       }
+   }
     
-    let ladyBugsPositions = arr[1]
-    .split(' ')
-    .map(Number);
-  
-    let ladyBugsArray = [];
- 
-    for(let i = 0 ;i < sizeOfField;i++){
-        ladyBugsArray.push(0)
-    }
- 
-    for(let i = 0; i < sizeOfField;i++){
-        let ladyBugsIndex = ladyBugsPositions[i]
-        if(ladyBugsIndex >= 0 && ladyBugsIndex <= sizeOfField){
-            ladyBugsArray[ladyBugsIndex] = 1
-        }
-    }
- 
-    for(let i = 2; i < arr.length;i++){
-        let [ladyBugsIndex, command, jumpLenght] = arr[i].split(' ');
-        ladyBugsIndex = +ladyBugsIndex;
-        jumpLenght = +jumpLenght;
- 
-        if(ladyBugsArray[ladyBugsIndex] !== 1 || ladyBugsIndex < 0 || ladyBugsIndex >= ladyBugsArray.length){
-            continue
-        }
- 
-        if(jumpLenght < 0){
-            jumpLenght = Math.abs(jumpLenght);
-            if(command === 'right'){
-                command = 'left';
-            }else if(command === 'left'){
-                command = 'right'
-            }
-        }
- 
-        ladyBugsArray[ladyBugsIndex] = 0;
-        if(command === 'right'){
-            let newPosion = ladyBugsIndex + jumpLenght;
- 
-            if(ladyBugsArray[newPosion] === 1){
-                newPosion = newPosion + jumpLenght
-            }
- 
-            if(newPosion <= ladyBugsArray.length){
-                ladyBugsArray[newPosion] = 1
-            }
-        }else{
-            let newPosion = ladyBugsIndex - jumpLenght;
- 
-            if(ladyBugsArray[newPosion] === 1){
-                newPosion = newPosion - jumpLenght;
-            }
- 
-            if(newPosion >= 0){
-                ladyBugsArray[newPosion] = 1
-            }
-        }
-    }
- 
- 
-    console.log(ladyBugsArray.join(' '))
- }
- ladyBugs([ 3, '0 1',
- '0 right 1',
- '2 right 1' ]
- )
+   console.log(field.join(' '))
+
+}
+ladyBugs([ 5, '3',
+'3 left 2',
+'1 left -2']
+
+
+)

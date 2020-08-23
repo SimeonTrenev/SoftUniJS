@@ -1,29 +1,31 @@
 function inventory(array){
+
     let heroes = []
-    while(array.length > 0){
-        let line = array.shift().split(' / ')
-        let hero = {name : line[0],
-        level : Number(line[1]),
-        items : line[2]
-        .split(', ')
-        .sort((a,b)=> a.localeCompare(b))
-        .join(', ')
-    }
-    heroes.push(hero)
+    array.forEach(line => {
+        let tokens = line.split(' / ')
+        let hero = tokens[0]
+        let level = Number(tokens[1])
+        let items = tokens[2].split(', ').sort((a,b) => a.localeCompare(b))
+        
+        heroes.push({
+            hero,
+            level,
+            items
+        })
+    });
     
-    }
-    heroes.sort((hero1,hero2)=>{
-        return hero1.level - hero2.level
-    })
+    heroes.sort((a,b) =>{
+      return  a.level - b.level
+    });
+   
+   heroes.forEach(hero => {
+       console.log(`Hero: ${hero.hero}`)
+       console.log(`level => ${hero.level}`)
+       console.log(`items => ${hero.items.join(', ')}`)
+   })
+   
+
     
-    let output = []
-
-    for(let hero of heroes){
-        let str = `Hero: ${hero.name}\nlevel => ${hero.level}\nitems => ${hero.items}`
-        output.push(str)
-    }
-    console.log(output.join("\n"))
-
 }
 inventory([
     "Isacc / 25 / Apple, GravityGun",

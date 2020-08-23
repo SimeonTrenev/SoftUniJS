@@ -1,22 +1,29 @@
-function piccolo(input){
+function piccolo(array){
 
-    let parking = []
+let cars = []
 
-    for(let comand of input){
-        let [direction,carNumber] = comand.split(', ')
-        if(direction === 'IN' && !parking.includes(carNumber)){
-            parking.push(carNumber)
-        }else if(direction === 'OUT' && parking.includes(carNumber)){
-            parking = parking.filter((cN)=> cN !== carNumber)
+for(let elements of array){
+    let [direction,carNumber] = elements.split(', ')
+    
+    if(direction === 'IN'){
+        if(!cars.includes(carNumber)){
+            cars.push(carNumber)
+        }
+    }else if(direction === 'OUT'){
+        if(cars.includes(carNumber)){
+            let indexOfCarNumber = cars.indexOf(carNumber)
+            cars.splice(indexOfCarNumber,1)
         }
     }
-    parking.sort((a,b)=>a.localeCompare(b))
-    if(parking.length > 0){
-    console.log(parking.join('\n'))
-    }else{
-        console.log('Parking Lot is Empty')
-    }
-
+}
+    if(cars.length > 0){
+    cars.sort((a,b) => {
+      return  a.localeCompare(b) 
+    })
+    console.log(cars.join('\n'))
+}else{
+    console.log(`Parking Lot is Empty`)
+}
 }
 piccolo(['IN, CA2844AA',
 'IN, CA1234TA',

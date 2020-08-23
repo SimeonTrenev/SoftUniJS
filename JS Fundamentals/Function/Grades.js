@@ -1,16 +1,17 @@
-function myGrades(grade){
+function grades(grade){
 
     if(grade >= 2 && grade <= 2.99){
-        return 'Fail';
+        return 'Fail'
     }else if(grade >= 3 && grade <= 3.49){
-        return 'Poor';
+        return 'Poor'
     }else if(grade >= 3.50 && grade <= 4.49){
-        return 'Good';
+        return 'Good'
     }else if(grade >= 4.50 && grade <= 5.49){
-        return 'Very good';
+        return 'Very good'
     }else if(grade >= 5.50 && grade <= 6){
-        return 'Excellent';
+        return 'Excellent'
     }
+
+
 }
-let result = myGrades(2.99)
-console.log(result)
+console.log(grades(2.99))

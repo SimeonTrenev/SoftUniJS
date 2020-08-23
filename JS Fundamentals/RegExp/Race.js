@@ -1,40 +1,49 @@
-function solve(input){
+function race(arr){
 
-    const participans = input.slice(0,1)[0].split(', ')
-    let racers = {};
-    let obj = {
-        0: '1st place',
-        1: '2nd place',
-        2: '3rd place'
-    };
 
-    for(let lineRace of input.slice(1)){
-        const namePattern = /[A-Za-z]/g;
-        const digitPattern = /[\d]/g
+    let racers = arr.shift().split(', ');
+    let object = {};
+    
+    for(let line of arr){
+        let nameMatch = line.match(/[A-Za-z]/g)
+        let name = nameMatch.join('');
+        let matchingForPoints = line.match(/[\d]/g)
+        let points = adding(matchingForPoints)
 
-        const matchedName = lineRace.match(namePattern)
-        const matchedDigits = lineRace.match(digitPattern)
-        
-        if(matchedName && matchedDigits){
-            const name = matchedName.join('')
-            const distance = matchedDigits.map(Number).reduce((a,b)=> a + b,0)
-
-            if(participans.includes(name)){
-            if(!racers[name]){
-                racers[name] = 0;
-            }
-            racers[name] += distance
+        if(racers.includes(name)){
+        if(!object[name]){
+            object[name] = 0
+        }
+        object[name] += points
+    }
+    }
+    
+    let ranking = Object.keys(object)
+                .sort((a,b) => object[b] - object[a])
+                .slice(0,3);
+    
+    for(let index in ranking){
+        if(index === '0'){
+            console.log(`1st place: ${ranking[index]}`)
+        }else if(index === '1'){
+            console.log(`2nd place: ${ranking[index]}`)
+        }else if(index === '2'){
+            console.log(`3rd place: ${ranking[index]}`)
         }
     }
+    
+    function adding(array){
+        let sum = 0;
+        if(array !== null){
+        for(let i = 0; i < array.length;i++){
+            sum += Number(array[i])
+        }
     }
-    Object.keys(racers)
-        .sort((a,b)=> racers[b] - racers[a])
-        .slice(0,3)
-        .forEach((racer, index)=>{
-            console.log(`${obj[index]}: ${racer}`)
-        });
+        return sum;
+    }
+
 }
-solve([
+race([
     'George, Peter, Bill, Tom',
     'G4e@55or%6g6!68e!!@',
     'R1@!3a$y4456@',
@@ -43,5 +52,4 @@ solve([
     '7P%et^#e5346r',
     'T$o553m&6',
     'end of race'
-  ]
-    )
+  ])

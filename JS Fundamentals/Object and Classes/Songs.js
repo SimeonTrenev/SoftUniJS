@@ -1,35 +1,35 @@
-function playlist(arr){
+function songClasses(array){
 
-    class Songs{
-        constructor(type,name,time){
-            this.type = type
-            this.name = name
+    let songArray = [];
+    class Song {
+        constructor(typeList, name, time){
+            this.typeList = typeList;
+            this.name = name;
             this.time = time
         }
+       
     }
-    let numberOfSongs = arr.shift()
-    let typeOfSongs = arr.pop()
-    let songs = []
+    let numberOfSongs = array.shift();
+    let wishList = array.pop();
 
-    for(let i = 0; i < numberOfSongs; i++ ){
-        let [type,name,time] = arr[i].split('_')
-        let song = new Songs(type,name,time)
-        songs.push(song)
+    for(let i = 0; i < numberOfSongs;i++){
+        let [typeList,name,time] = array[i].split('_')
+       let song = new Song(typeList,name,time)
+       songArray.push(song)
     }
     
-    if(typeOfSongs === 'all'){
-        songs.forEach((i) => console.log(i.name))
+    if(wishList === 'all'){
+        songArray.forEach((i) => console.log(i.name))
     }else{
-        let filtered = songs.filter((i)=>i.type === typeOfSongs);
-        filtered.forEach((i)=>console.log(i.name))
+        let filtered = songArray.filter((i) => i.typeList === wishList)
+        filtered.forEach((i) => console.log(i.name))
     }
+    
 
 }
-playlist([4,
+songClasses([3,
     'favourite_DownTown_3:14',
-    'listenLater_Andalouse_3:24',
-    'favourite_In To The Night_3:58',
-    'favourite_Live It Up_3:48',
-    'listenLater']
-    
+    'favourite_Kiss_4:16',
+    'favourite_Smooth Criminal_4:01',
+    'favourite']
     )

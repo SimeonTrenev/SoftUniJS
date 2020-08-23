@@ -1,37 +1,40 @@
-function sortNumbers(a, b, c){
+function sortNumbers(firsNumber, secondNumber, thirdNumber){
 
-if(a >= b && a >= c){
-    if(b >= c){
-        console.log(a)
-        console.log(b)
-        console.log(c)
-    }else{
-        console.log(a)
-        console.log(c)
-        console.log(b)
+    if(firsNumber >= secondNumber && firsNumber >= thirdNumber){
+        if(secondNumber >= thirdNumber){
+            console.log(firsNumber)
+            console.log(secondNumber)
+            console.log(thirdNumber)
+        }else{
+            console.log(firsNumber)
+            console.log(thirdNumber)
+            console.log(secondNumber)
+        }
+    }else if(secondNumber >= firsNumber && secondNumber >= thirdNumber){
+        if(firsNumber >= thirdNumber){
+            console.log(secondNumber)
+            console.log(firsNumber)
+            console.log(thirdNumber)
+        }else{
+            console.log(secondNumber)
+            console.log(thirdNumber)
+            console.log(firsNumber)
+        }
+    }else if(thirdNumber >= firsNumber && thirdNumber >= secondNumber){
+        if(firsNumber >= secondNumber){
+            console.log(thirdNumber)
+            console.log(firsNumber)
+            console.log(secondNumber)
+        }else{
+            console.log(thirdNumber)
+            console.log(secondNumber)
+            console.log(firsNumber)
+        }
     }
-}else if(b >=a && b >= c){
-    if(a >= c){
-        console.log(b)
-        console.log(a)
-        console.log(c)
-    }else{
-        console.log(b)
-        console.log(c)
-        console.log(a)
-    }
-}else if(c >= a && c >= b){
-    if(a >= b){
-        console.log(c)
-        console.log(a)
-        console.log(b)
-    }else{
-        console.log(c)
-        console.log(b)
-        console.log(a)
-    }
+    
 }
-}
-sortNumbers(2, 
-    1, 
-    3)
+sortNumbers(0,
+    0,
+    2
+    
+    )

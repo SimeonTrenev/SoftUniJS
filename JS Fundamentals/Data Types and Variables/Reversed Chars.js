@@ -1,11 +1,11 @@
-function reversedChars(firsChar, secondChar, thirdChar){
-    let charOne = firsChar.split(',')
-    let charTwo = secondChar.split(',')
-    let charThree = thirdChar.split(',')
-    let allChars = `${thirdChar} ${secondChar} ${firsChar}`
-    console.log(allChars)
+function reversedChars(firstChar, secondChar, thirdChar){
+
+    let concated = firstChar + ' ' + secondChar + ' ' + thirdChar
+    let reversed = concated.split('').reverse().join('')
+    console.log(reversed)
+
 }
-reversedChars('1',
-'L',
-'&'
+reversedChars('A',
+'B',
+'C'
 )

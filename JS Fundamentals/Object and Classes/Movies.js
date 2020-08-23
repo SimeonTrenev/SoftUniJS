@@ -1,45 +1,54 @@
-function movie(arr){
+function movies(array){
 
     let movies = []
 
-    for(let comand of arr){
-        let tokens = comand.split(' ')
+    array.forEach(line => {
+        let tokens = line.split(' ')
+        let addMovieIndex = tokens.indexOf('addMovie')
+        let directorIndex = tokens.indexOf('directedBy')
+        let dateIndex = tokens.indexOf('onDate')
 
-        if(tokens[0] === 'addMovie'){
-            let filmName = tokens.slice(1).join(' ')
-            movies.push({ name: filmName });
-        }else if(tokens.includes('directedBy')){
-            let directedByIndex = tokens.indexOf('directedBy')
-            let filmName = tokens.slice(0,directedByIndex).join(' ');
-
-            const film = movies.find((obj) => obj.name === filmName)
-            if(film){
-                let directorName = tokens.slice(directedByIndex + 1).join(' ')
-                film.director = directorName;
-            }
-
-        }else if(tokens.includes('onDate')){
-
-            let onDateIndex = tokens.indexOf('onDate')
-            let filmName = tokens.slice(0,onDateIndex).join(' ')
-
-            const film = movies.find((obj) => obj.name === filmName);
-
-            if(film){
-                film.date = tokens.slice(onDateIndex + 1).join(' ')
-            }
-
+        if(addMovieIndex > -1){
+            movies.push({name : tokens.slice(addMovieIndex + 1).join(' ')})
         }
 
-    }
-    const filteredMovies = movies.filter((moviee) => Object.keys(moviee).length === 3)
-    
-    for(let film of filteredMovies){
-        console.log(JSON.stringify(film))
-    }
+        if(directorIndex > -1){
+            const name = tokens.slice(0,directorIndex).join(' ');
+            const director = tokens.slice(directorIndex + 1).join(' ')
+            
+            movies.forEach(movie => {
+                if(movie.name === name){
+                    movie.director = director;
+                }
+            })
+           
+        }
 
+        if(dateIndex > -1){
+            const name = tokens.slice(0,dateIndex).join(' ')
+            const date = tokens.slice(dateIndex + 1).join(' ')
+            
+            movies.forEach(movie =>{
+                if(movie.name === name){
+                    movie.date = date
+                }
+            })
+        }
+        
+    });
+
+    movies.forEach(movie =>{
+        if(movie.name !== undefined 
+            && movie.director !== undefined 
+            && movie.date !== undefined){
+            console.log(JSON.stringify(movie))
+        }
+    })
+
+
+    
 }
-movie([
+movies([
     'addMovie Fast and Furious',
     'addMovie Godfather',
     'Inception directedBy Christopher Nolan',
@@ -48,5 +57,4 @@ movie([
     'Fast and Furious onDate 30.07.2018',
     'Batman onDate 01.08.2018',
     'Fast and Furious directedBy Rob Cohen'
-    ]
-    )
+  ])
